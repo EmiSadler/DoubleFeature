@@ -18,10 +18,10 @@ export const SignUp = () => {
           <input type="password" id="password" name="password" required />
         </div>
         <button type="submit">Sign Up</button>
+        <div className="login-link">
+          Already have an account? <a href="/login">Log in</a>
+        </div>
       </form>
-      <div className="login-link">
-        Already have an account? <a href="/login">Log in</a>
-      </div>
       <Footer />
     </div>
   );
