@@ -5,6 +5,11 @@
   --film-text-color: #e0e0e0;
   --film-border-color: #444444;
 }
+
+.form-group {
+  background-color: #f2e9d0;
+}
+
 .sign-up-page {
   display: flex;
   flex-direction: column;
@@ -38,7 +43,7 @@
   max-width: 400px;
   margin: 1.5rem auto;
   padding: 2rem;
-  background-color: var(--film-background-color);
+  background-color: #f2e9d0;
   border: 5px solid #c0aa6c;
   border-radius: 10px;
   box-shadow: 0 0 30px rgba(192, 170, 108, 0.3);
