@@ -150,6 +150,7 @@ In a new terminal session...
 ; createdb doublefeature
 ; npx prisma migrate dev --name initial_setup
 ; node index.js
+```
 
 You should now be able to open your browser and go to the
 `http://localhost:5173` to get to the homepage and start exploring the application.
@@ -168,4 +169,7 @@ This project was initially created by:
 
 Under the guidance of our coach at [Makers Academy](https://github.com/makersacademy):
 [John Forster](https://github.com/JohnForster)
+
+```
+
 ```
