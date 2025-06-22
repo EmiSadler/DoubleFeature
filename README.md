@@ -126,7 +126,7 @@ Create a file `api/.env` with the following contents:
 
 For an explanation of these environment variables, see the documentation.
 
-### How to run the server and use the app
+### How to run the servers and use the app
 
 1. Start the server application (in the `api` directory) in dev mode:
 
@@ -144,20 +144,28 @@ In a new terminal session...
 ; npm run dev
 ```
 
+3. Start the database (in the `api` directroy):
+
+```
+; createdb doublefeature
+; npx prisma migrate dev --name initial_setup
+; node index.js
+
 You should now be able to open your browser and go to the
 `http://localhost:5173` to get to the homepage and start exploring the application.
 
 ## Authors and acknowledgment
 
-This project was created by:
+This project was initially created by:
 
 [Kate Bancroft](https://github.com/KI-22)
 [Fliss Douglas](https://github.com/flissd1795)
-[Alister Ko](https://github.com/alistershko)  
-[Etienne Le Goater](https://github.com/Elegoater)  
+[Alister Ko](https://github.com/alistershko)
+[Etienne Le Goater](https://github.com/Elegoater)
 [Ben Loveday](https://github.com/StrawberryScot)
 [Emily Sadler](https://github.com/EmiSadler)
 [Louis Tse](https://github.com/Louistwt)
 
-Under the guidance of our coach at [Makers Academy](https://github.com/makersacademy):  
+Under the guidance of our coach at [Makers Academy](https://github.com/makersacademy):
 [John Forster](https://github.com/JohnForster)
+```
