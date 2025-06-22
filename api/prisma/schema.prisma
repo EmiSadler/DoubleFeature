@@ -14,20 +14,20 @@ datasource db {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
-  username   String      @unique
-  email      String      @unique
-  password   String
-  createdAt  DateTime    @default(now())
-  gameScores GameScore[]
+  id          Int         @id @default(autoincrement())
+  username    String      @unique
+  email       String      @unique
+  password    String
+  createdAt   DateTime    @default(now())
+  gameScores  GameScore[]
 }
 
 model GameScore {
-  id         Int      @id @default(autoincrement())
-  userId     Int
-  user       User     @relation(fields: [userId], references: [id])
-  score      Int
-  gameMode   String   @default("easy") // "easy" or "hard"
-  playedAt   DateTime @default(now())
-  moviesUsed Json     // Store only the movie IDs used in the game
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  score       Int
+  gameMode    String    @default("easy") // "easy" or "hard"
+  playedAt    DateTime  @default(now())
+  moviesUsed  Json      // Store only the movie IDs used in the game
 }
