@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom"; // Import Link
 import Footer from "../../components/Footer";
 import { DoubleFeatureLogo } from "../../components/DoubleFeatureLogo";
+import { login } from "../../services/authentication";
 import "./Authentication.css";
-import "../../index.css";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     usernameOrEmail: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -18,9 +22,25 @@ export const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login attempt with:", formData);
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const data = await login(formData.usernameOrEmail, formData.password);
+
+      // Store token and user info in localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      // Redirect to home page after successful login
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -29,7 +49,8 @@ export const Login = () => {
         <h1 className="home-title">Welcome to</h1>
         <DoubleFeatureLogo />
         <h1>Login to Start Playing!</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} method="post">
+          {error && <div className="error-message">{error}</div>}
           <div className="form-group">
             <label htmlFor="usernameOrEmail">Username or Email</label>
             <input
@@ -53,9 +74,11 @@ export const Login = () => {
               required
             />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
           <div className="login-link">
-            Need an Account? <a href="/signup">Sign Up Here</a>
+            Need an Account? <Link to="/signup">Sign Up Here</Link>
           </div>
         </form>
       </div>
