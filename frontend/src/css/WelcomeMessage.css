@@ -1,0 +1,39 @@
+/* Add to your CSS file */
+.welcome-message {
+  text-align: center;
+  margin: 1rem auto;
+  padding: 0.75rem 1.5rem;
+  max-width: 500px;
+  border-radius: 10px;
+  background-color: rgba(192, 170, 108, 0.2);
+  border: 2px solid #c0aa6c;
+  font-family: "Federo", sans-serif;
+}
+
+.username-highlight {
+  color: #c0aa6c;
+  font-family: "Limelight";
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: 1px 1px #000;
+}
+
+.user-welcome h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.sign-in-prompt {
+  font-size: 1.2rem;
+}
+
+.welcome-link {
+  color: #c0aa6c;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.welcome-link:hover {
+  color: #9a3c25;
+}
