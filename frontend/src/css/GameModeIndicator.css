@@ -1,0 +1,27 @@
+.game-mode-indicator {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  text-align: center;
+  font-family: "Limelight", cursive;
+  margin: 0.5rem auto;
+}
+
+.game-mode-indicator.easy {
+  background-color: #c0aa6c;
+  color: #1a1a1a;
+  border: 2px solid #9a3c25;
+}
+
+.game-mode-indicator.hard {
+  background-color: #9a3c25;
+  color: #c0aa6c;
+  border: 2px solid #c0aa6c;
+}
+
+@media (max-width: 768px) {
+  .game-mode-indicator {
+    font-size: 0.85rem;
+    padding: 4px 10px;
+  }
+}

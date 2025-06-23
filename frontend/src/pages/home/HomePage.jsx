@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Footer from "../../components/Footer";
 import "./HomePage.css";
 import PlayButton from "../../components/PlayButton";
+import WelcomeMessage from "../../components/WelcomeMessage";
 import ModeToggle from "../../components/ModeToggle";
 import { DoubleFeatureLogo } from "../../components/DoubleFeatureLogo";
 import ControlsHeader from "../../components/ControlsHeader";
