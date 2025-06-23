@@ -1,0 +1,232 @@
+/* Modal Overlay */
+.modal-highscores-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.85); /* darker overlay */
+  display: grid;
+  place-items: center;
+  transition: all 0.3s linear;
+  visibility: hidden;
+  z-index: -10;
+}
+
+.open-modal-highscores {
+  visibility: visible;
+  z-index: 10;
+}
+
+/* Container - theme-compatible styling */
+.modal-highscores-container {
+  background-color: var(--film-background-color);
+  border: 5px solid #c0aa6c; /* gold border consistent with site */
+  border-radius: 0.75rem;
+  width: 90vw;
+  max-width: 700px;
+  height: auto;
+  max-height: 80vh;
+  padding: 2rem;
+  text-align: center;
+  color: var(--film-text-color);
+  font-family: "Federo", sans-serif;
+  box-shadow: 0 0 30px rgba(192, 170, 108, 0.3); /* soft gold glow */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Highscores button */
+.modal-howto-btn {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #9a3c25;
+  background-color: #c0aa6c;
+  border: 2px solid #9a3c25;
+  padding: 0.75rem 1.5rem;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Limelight";
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.modal-howto-btn:hover {
+  background-color: #d4bc7a;
+  box-shadow: 0 0 10px rgba(192, 170, 108, 0.5);
+}
+
+/* Close Button */
+.close-highscores-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background-color: #c0aa6c;
+  color: #111;
+  border: 2px solid var(--film-border-color);
+  padding: 0.15rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Limelight";
+}
+
+.close-highscores-btn:hover {
+  background-color: #d4bc7a;
+  transform: scale(1.05);
+}
+
+/* Header styling */
+.highscores-h1 {
+  font-size: 40px;
+  color: #9a3c25;
+  margin-bottom: 0.5rem;
+  font-family: "Limelight";
+  text-shadow: 1px 1px #000;
+}
+
+/* Tabs */
+.highscores-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  background-color: var(--film-card-background-color);
+  color: var(--film-text-color);
+  border: 2px solid #c0aa6c;
+  padding: 0.5rem 1.5rem;
+  font-size: 18px;
+  font-family: "Federo", sans-serif;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background-color: #c0aa6c;
+  color: #111;
+  font-weight: bold;
+}
+
+.tab-btn:hover:not(.active) {
+  background-color: rgba(192, 170, 108, 0.3);
+}
+
+/* Highscores table */
+.highscores-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: "Federo", sans-serif;
+}
+
+.highscores-table th,
+.highscores-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(192, 170, 108, 0.5);
+}
+
+.highscores-table th {
+  background-color: rgba(192, 170, 108, 0.2);
+  font-weight: bold;
+  color: #9a3c25;
+  font-family: "Limelight";
+  font-size: 1.1rem;
+}
+
+.highscores-table tr:nth-child(even) {
+  background-color: rgba(192, 170, 108, 0.1);
+}
+
+.highscores-table tr:hover {
+  background-color: rgba(192, 170, 108, 0.2);
+}
+
+/* Top 3 rankings */
+.top-rank {
+  font-weight: bold;
+}
+
+.top-rank:nth-child(1) td {
+  color: #c0aa6c;
+  background-color: rgba(154, 60, 37, 0.3);
+}
+
+.top-rank:nth-child(2) td {
+  color: #9a3c25;
+  background-color: rgba(192, 170, 108, 0.3);
+}
+
+.top-rank:nth-child(3) td {
+  color: #9a3c25;
+  background-color: rgba(192, 170, 108, 0.15);
+}
+
+/* Game mode indicators */
+.hard-mode {
+  color: #9a3c25;
+  font-weight: bold;
+}
+
+.easy-mode {
+  color: #c0aa6c;
+  font-weight: bold;
+}
+
+/* Messages */
+.login-prompt,
+.no-scores-message {
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--film-text-color);
+  background-color: rgba(192, 170, 108, 0.1);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.login-prompt a {
+  color: #c0aa6c;
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+.login-prompt a:hover {
+  color: #9a3c25;
+}
+
+/* Loading indicator */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #c0aa6c;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .highscores-h1 {
+    font-size: 32px;
+  }
+
+  .tab-btn {
+    padding: 0.4rem 1rem;
+    font-size: 16px;
+  }
+
+  .highscores-table th,
+  .highscores-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}

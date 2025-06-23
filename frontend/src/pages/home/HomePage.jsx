@@ -8,6 +8,7 @@ import ModeToggle from "../../components/ModeToggle";
 import { DoubleFeatureLogo } from "../../components/DoubleFeatureLogo";
 import ControlsHeader from "../../components/ControlsHeader";
 import HowTo from "../../components/HowTo";
+import HighScoreModal from "../../components/HighScoreModal";
 import jazz from "../../assets/Audio/Jazz.mp3";
 import SoundToggle from "../../components/SoundToggle";
 
@@ -75,6 +76,7 @@ export const HomePage = () => {
         <p className="home-p">🎬 Make connections between movies to win 🍿</p>
         <PlayButton />
         <ModeToggle />
+        <HighScoreModal />
         <HowTo />
       </div>
       <Footer />
