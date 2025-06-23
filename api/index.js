@@ -70,4 +70,73 @@ app.get("/api/profile", async (req, res) => {
   }
 });
 
+// Save game score (requires authentication)
+app.post("/api/scores", async (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { score, gameMode, moviesUsed } = req.body;
+
+    const gameScore = await prisma.gameScore.create({
+      data: {
+        userId: decoded.id,
+        score,
+        gameMode,
+        moviesUsed: JSON.stringify(moviesUsed),
+      },
+    });
+
+    res.status(201).json(gameScore);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to save score" });
+  }
+});
+
+// Get user's scores (requires authentication)
+app.get("/api/scores/user", async (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const scores = await prisma.gameScore.findMany({
+      where: { userId: decoded.id },
+      orderBy: { score: "desc" },
+    });
+
+    res.json(scores);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch scores" });
+  }
+});
+
+// Get global leaderboard
+app.get("/api/scores/leaderboard", async (req, res) => {
+  try {
+    const leaderboard = await prisma.gameScore.findMany({
+      select: {
+        id: true,
+        score: true,
+        gameMode: true,
+        playedAt: true,
+        user: { select: { username: true } },
+      },
+      orderBy: { score: "desc" },
+      take: 100,
+    });
+
+    res.json(leaderboard);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch leaderboard" });
+  }
+});
+
 app.listen(3001, () => console.log("Server running on http://localhost:3001"));
