@@ -80,7 +80,7 @@
   font-size: 1rem;
   width: 100%;
   background-color: var(--film-background-color);
-  color: #333; /* Changed from var(--film-text-color) to a darker color */
+  color: #f1ebeb; /* Changed from var(--film-text-color) to a darker color */
   font-family: "Federo", sans-serif;
 }
 
