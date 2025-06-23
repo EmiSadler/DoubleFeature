@@ -8,6 +8,7 @@ import slide from "../../assets/slide-trans.png";
 
 // services to import
 import { startNewGame } from "../../services/game";
+import { saveGameScore } from "../../services/saveScore";
 import { playSound, isSoundEnabled } from "../../services/sound";
 import drumroll from "../../assets/Audio/drumroll.mp3";
 import quirkyJazz from "../../assets/Audio/QuirkyJazz.mp3"; // Import the jazz audio
@@ -37,6 +38,8 @@ const GamePage = () => {
   const gameMode = searchParams.get("mode") || "easy";
   const backgroundMusicRef = useRef(null);
   const [seconds, setSeconds] = useState(gameMode === "easy" ? 30 : 20); // Track time for fading music
+  const [scoreSaved, setScoreSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   // Initialize background music when component mounts
   useEffect(() => {
@@ -181,7 +184,32 @@ const GamePage = () => {
     // Short delay to let drumroll play before showing results
     setTimeout(() => {
       console.log("Timeout completed, setting game over to true");
+      // Save the score to the database
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          // Extract just the movie IDs to save
+          const movieIds = moviesPlayed.map((item) => {
+            return { id: item.movie.id, title: item.movie.title };
+          });
 
+          saveGameScore(token, score, gameMode, movieIds)
+            .then((result) => {
+              console.log("Score saved successfully:", result);
+              setScoreSaved(true);
+            })
+            .catch((error) => {
+              console.error("Failed to save score:", error);
+              setSaveError(
+                "Failed to save score. Make sure you are logged in to qualify for the leaderboards! Try again later."
+              );
+            });
+        } catch (error) {
+          console.error("Error preparing score data:", error);
+        }
+      } else {
+        console.log("User not logged in, score not saved");
+      }
       // Set game over state directly, without requestAnimationFrame
       setIsGameOver(true);
 
