@@ -138,7 +138,7 @@
 .highscores-table th {
   background-color: rgba(192, 170, 108, 0.2);
   font-weight: bold;
-  color: #9a3c25;
+  color: #efecec;
   font-family: "Limelight";
   font-size: 1.1rem;
 }
@@ -159,16 +159,6 @@
 .top-rank:nth-child(1) td {
   color: #c0aa6c;
   background-color: rgba(154, 60, 37, 0.3);
-}
-
-.top-rank:nth-child(2) td {
-  color: #9a3c25;
-  background-color: rgba(192, 170, 108, 0.3);
-}
-
-.top-rank:nth-child(3) td {
-  color: #9a3c25;
-  background-color: rgba(192, 170, 108, 0.15);
 }
 
 /* Game mode indicators */
