@@ -98,3 +98,236 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+/* Add these new mobile-specific rules before your existing media queries */
+
+/* Base font size control - already defined */
+:root {
+  /* Default font size for small/medium screens */
+  font-size: 16px;
+}
+
+/* Mobile phones (portrait) */
+@media screen and (max-width: 480px) {
+  :root {
+    font-size: 14px;
+  }
+
+  /* Reduce padding on all containers */
+  .page-container {
+    padding: 0.5rem;
+  }
+
+  /* Make buttons more compact */
+  button,
+  .modal-howto-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust film boxes for mobile */
+  .FilmBox-Container {
+    max-width: 95%;
+  }
+
+  .Film-Poster {
+    width: 90px;
+  }
+
+  /* Stack buttons vertically on mobile */
+  .navigation-buttons,
+  .controls-top-section {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Make header more compact */
+  h1 {
+    font-size: 2.2em;
+    margin: 0.5rem 0;
+  }
+
+  /* Reduce modal size */
+  .modal-container,
+  .modal-highscores-container {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  /* Adjust game board for mobile */
+  .game-content {
+    padding: 0.5rem;
+  }
+}
+
+/* Small tablets and large phones (landscape) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  :root {
+    font-size: 15px;
+  }
+
+  .page-container {
+    padding: 0.75rem;
+  }
+
+  button,
+  .modal-howto-btn {
+    padding: 0.6rem 1.2rem;
+  }
+
+  .FilmBox-Container {
+    max-width: 450px;
+  }
+
+  .Film-Poster {
+    width: 110px;
+  }
+
+  /* Adjust header layout */
+  .controls-top-section {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+}
+
+/* Tablets (portrait) */
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  :root {
+    font-size: 16px;
+  }
+
+  .FilmBox-Container {
+    max-width: 480px;
+  }
+
+  .Film-Poster {
+    width: 120px;
+  }
+}
+
+/* Medium screens */
+@media screen and (min-width: 1024px) {
+  :root {
+    font-size: 17px;
+  }
+
+  .FilmBox-Container {
+    max-width: 500px;
+  }
+
+  .Film-Poster {
+    width: 130px;
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 1440px) {
+  :root {
+    font-size: 18px;
+  }
+
+  .page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .FilmBox-Container {
+    max-width: 550px;
+  }
+
+  .Film-Poster {
+    width: 150px;
+  }
+}
+
+/* Extra large screens */
+@media screen and (min-width: 1920px) {
+  :root {
+    font-size: 20px;
+  }
+
+  .page-container {
+    max-width: 1800px;
+  }
+
+  .FilmBox-Container {
+    max-width: 600px;
+  }
+
+  .Film-Poster {
+    width: 170px;
+  }
+
+  /* Increase button sizes */
+  button,
+  .modal-howto-btn {
+    padding: 0.8rem 1.8rem;
+  }
+
+  /* Increase spacing */
+  .home-content {
+    gap: 2rem;
+  }
+}
+
+/* Ultra-wide screens */
+@media screen and (min-width: 2560px) {
+  :root {
+    font-size: 22px;
+  }
+
+  .page-container {
+    max-width: 2200px;
+  }
+
+  /* Further adjustments for extremely large screens */
+  .FilmBox-Container {
+    max-width: 700px;
+  }
+}
+
+footer,
+.footer {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 1rem;
+  left: 0;
+  right: 0;
+  align-self: stretch;
+  margin-top: auto;
+}
+
+/* Override for larger screens */
+@media screen and (min-width: 1440px) {
+  footer,
+  .footer {
+    width: 100vw; /* Force full viewport width */
+    max-width: 100vw;
+    margin-left: calc(
+      (100% - 100vw) / 2
+    ); /* Center when page container has max-width */
+    position: relative;
+  }
+
+  /* Adjust padding to account for page container max-width */
+  .page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 0; /* Remove bottom padding to avoid gaps */
+  }
+}
+
+/* Same override for very large screens */
+@media screen and (min-width: 1920px) {
+  .page-container {
+    max-width: 1800px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .page-container {
+    max-width: 2200px;
+  }
+}
