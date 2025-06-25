@@ -1,4 +1,18 @@
 {
+  "name": "cine2dorkle",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=frontend",
+    "start": "npm start --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\""
+  },
   "dependencies": {
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.30.0"
@@ -8,6 +22,7 @@
     "@testing-library/react": "^16.3.0",
     "jest": "^29.7.0",
     "jsdom": "^26.1.0",
-    "vitest": "^3.1.1"
+    "vitest": "^3.1.1",
+    "concurrently": "^8.0.0"
   }
 }

@@ -1,5 +1,8 @@
 const { getRandomMovieLogic } = require("./tmdb.js");
-const { fetchMoviesByNameAndReleaseYear, fetchCastFromMovieId } = require("../services/tmdb");
+const {
+  fetchMoviesByNameAndReleaseYear,
+  fetchCastFromMovieId,
+} = require("../services/tmdb.js");
 
 const activeGames = new Map(); // Store active games in memory
 
@@ -59,7 +62,10 @@ const processGuess = async (req, res) => {
   const { movie_title, movie_release_year, target_movie_id } = req.body;
 
   try {
-    const searchResults = await fetchMoviesByNameAndReleaseYear(movie_title, movie_release_year);
+    const searchResults = await fetchMoviesByNameAndReleaseYear(
+      movie_title,
+      movie_release_year
+    );
 
     if (searchResults.length === 0) {
       console.error("Movie not found:", movie_title);
@@ -106,7 +112,8 @@ const processGuess = async (req, res) => {
           // Update cast member usage counts
           matchingCast.forEach((cast) => {
             // Add cast member to the played list if not already existing, then increment the count
-            game.linkIDsPlayed[cast.id] = (game.linkIDsPlayed[cast.id] || 0) + 1;
+            game.linkIDsPlayed[cast.id] =
+              (game.linkIDsPlayed[cast.id] || 0) + 1;
           });
         }
 

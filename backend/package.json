@@ -1,11 +1,11 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "start": "node server.js",
+    "start": "node index.js",
     "dev": "node --watch server.js"
   },
   "keywords": [],

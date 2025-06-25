@@ -30,3 +30,4 @@ dist-ssr
 
 /api/coverage
 /frontend/coverage
+.vercel
