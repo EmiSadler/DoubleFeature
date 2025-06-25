@@ -3,6 +3,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const path = require("path");
+const axios = require("axios");
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
@@ -139,4 +141,20 @@ app.get("/api/scores/leaderboard", async (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log("Server running on http://localhost:3001"));
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+// Handle requests by serving index.html for all routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+});
+
+// API endpoint
+app.use("/api/products", async (req, res) => {
+  const response = await axios.get("https://double-feature.vercel.app");
+  res.send(response.data);
+});
+
+app.listen(4000, () => {
+  console.log("Server is running on port 4000");
+});

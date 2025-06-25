@@ -5,8 +5,9 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "start": "node index.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "postinstall": "cd ../frontend && npm install && npm run build",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
