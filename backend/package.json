@@ -9,7 +9,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build": "npx prisma generate",
-    "dev": "node --watch server.js",
+    "dev": "node --watch index.js",
     "start": "node index.js"
   },
   "keywords": [],
