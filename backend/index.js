@@ -12,6 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "ok", env: process.env.NODE_ENV });
+});
+
 // Register
 app.post("/api/register", async (req, res) => {
   const { username, email, password } = req.body;
@@ -141,6 +146,10 @@ app.get("/api/scores/leaderboard", async (req, res) => {
   }
 });
 
+// Route imports
+app.use("/tmdb", require("./routes/tmdb"));
+app.use("/game", require("./routes/game"));
+
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
@@ -149,15 +158,8 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
-// API endpoint
-app.use("/api/products", async (req, res) => {
-  const response = await axios.get("https://double-feature.vercel.app");
-  res.send(response.data);
-});
-
-app.use("/tmdb", require("./routes/tmdb"));
-app.use("/game", require("./routes/game"));
-
-app.listen(4000, () => {
-  console.log("Server is running on port 4000");
+// Server setup
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
