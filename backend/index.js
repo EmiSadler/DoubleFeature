@@ -155,6 +155,9 @@ app.use("/api/products", async (req, res) => {
   res.send(response.data);
 });
 
+app.use("/tmdb", require("./routes/tmdb"));
+app.use("/game", require("./routes/game"));
+
 app.listen(4000, () => {
   console.log("Server is running on port 4000");
 });
