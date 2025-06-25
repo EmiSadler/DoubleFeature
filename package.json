@@ -2,6 +2,9 @@
   "name": "cine2dorkle",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "workspaces": [
     "frontend",
     "backend"
@@ -10,7 +13,7 @@
     "schema": "./backend/prisma/schema.prisma"
   },
   "scripts": {
-    "build": "npm run build --workspace=frontend && prisma generate",
+    "build": "npm run build:frontend && prisma generate",
     "start": "npm start --workspace=backend",
     "postinstall": "prisma generate",
     "dev:frontend": "npm run dev --workspace=frontend",

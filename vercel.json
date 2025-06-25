@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm run install:frontend && npm run build:frontend",
+  "buildCommand": "npm install && npm run build:frontend",
   "outputDirectory": "frontend/dist",
   "rewrites": [
     { "source": "/api/:path*", "destination": "/backend/index.js" },
@@ -10,5 +10,11 @@
   ],
   "env": {
     "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "NODE_VERSION": "18",
+      "NPM_FLAGS": "--legacy-peer-deps"
+    }
   }
 }
