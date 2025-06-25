@@ -5,9 +5,11 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "build": "prisma generate && <actual-build-command>",
     "dev": "node --watch server.js",
-    "postinstall": "cd ../frontend && npm install && npm run build",
+    "postinstall": "cd ../frontend && npm install && npm run build && prisma generate",
     "start": "node index.js"
+
   },
   "keywords": [],
   "author": "",
