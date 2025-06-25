@@ -7,7 +7,8 @@
     "backend"
   ],
   "prisma": {
-    "schema": "./backend/prisma/schema.prisma",
+    "schema": "./backend/prisma/schema.prisma"
+  },
   "scripts": {
     "build": "npm run build --workspace=frontend && prisma generate && npm run build",
     "start": "npm start --workspace=backend",
