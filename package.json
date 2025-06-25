@@ -10,7 +10,7 @@
     "schema": "./backend/prisma/schema.prisma"
   },
   "scripts": {
-    "build": "npm run build --workspace=frontend && prisma generate && npm run build",
+    "build": "npm run build --workspace=frontend && prisma generate",
     "start": "npm start --workspace=backend",
     "postinstall": "prisma generate",
     "dev:frontend": "npm run dev --workspace=frontend",

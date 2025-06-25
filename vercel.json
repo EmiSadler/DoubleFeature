@@ -3,14 +3,37 @@
   "builds": [
     {
       "src": "backend/index.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["backend/prisma/**/*"]
+      }
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "backend/index.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.+)",
+      "dest": "frontend/dist/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/dist/index.html"
     }
   ],
-  "buildCommand": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend"
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
