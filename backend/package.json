@@ -2,14 +2,15 @@
   "name": "api",
   "version": "1.0.0",
   "main": "index.js",
+  "prisma": {
+    "schema": "./prisma/schema.prisma"
+  },
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "prisma generate && <actual-build-command>",
+    "build": "npx prisma generate",
     "dev": "node --watch server.js",
-    "postinstall": "cd ../frontend && npm install && npm run build && prisma generate",
     "start": "node index.js"
-
   },
   "keywords": [],
   "author": "",
