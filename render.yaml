@@ -1,0 +1,34 @@
+services:
+  # Backend API
+  - type: web
+    name: doublefeature-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REACT_APP_API_KEY
+        sync: false
+    rootDir: backend
+
+  # Frontend
+  - type: web
+    name: doublefeature-frontend
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_BACKEND_URL
+        value: https://doublefeature-backend.onrender.com
+    rootDir: frontend
+    headers:
+      - path: "*.js"
+        name: "Content-Type"
+        value: "application/javascript"
+      - path: "*.mjs"
+        name: "Content-Type" 
+        value: "application/javascript"
+      - path: "*.css"
+        name: "Content-Type"
+        value: "text/css"
