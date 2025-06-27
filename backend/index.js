@@ -12,21 +12,22 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.NODE_ENV === "production" 
-    ? [
-        "https://doublefeature.onrender.com",
-        "https://doublefeature-frontend.onrender.com",
-        /\.onrender\.com$/  // Allow any onrender.com subdomain
-      ]
-    : [
-        "http://localhost:5173",
-        "http://localhost:3000", 
-        "http://localhost:4173",
-        "http://localhost:4000"
-      ],
+  origin:
+    process.env.NODE_ENV === "production"
+      ? [
+          "https://doublefeature.onrender.com",
+          "https://doublefeature-frontend.onrender.com",
+          /\.onrender\.com$/, // Allow any onrender.com subdomain
+        ]
+      : [
+          "http://localhost:5173",
+          "http://localhost:3000",
+          "http://localhost:4173",
+          "http://localhost:4000",
+        ],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
@@ -35,7 +36,7 @@ app.use(express.json());
 // Debug middleware
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
-  console.log('Origin:', req.headers.origin);
+  console.log("Origin:", req.headers.origin);
   next();
 });
 

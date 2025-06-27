@@ -8,6 +8,12 @@ const HighScoreModal = () => {
   const [globalScores, setGlobalScores] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Get backend URL from environment variable
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+  const API = `${BACKEND_URL}/api`;
+
+  console.log("HighScoreModal API URL:", API); // Debug logging
+
   // Fetch scores when the modal opens
   useEffect(() => {
     if (isModalOpen) {
@@ -24,30 +30,35 @@ const HighScoreModal = () => {
 
       if (token) {
         // Fetch personal scores
-        const personalResponse = await fetch(
-          "http://localhost:3001/api/scores/user",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const personalResponse = await fetch(`${API}/scores/user`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         if (personalResponse.ok) {
           const personalData = await personalResponse.json();
           setPersonalScores(personalData);
+        } else {
+          console.error(
+            "Failed to fetch personal scores:",
+            personalResponse.status
+          );
         }
       }
 
       // Fetch global scores (no auth needed)
-      const globalResponse = await fetch(
-        "http://localhost:3001/api/scores/leaderboard"
-      );
+      const globalResponse = await fetch(`${API}/scores/leaderboard`);
 
       if (globalResponse.ok) {
         const globalData = await globalResponse.json();
         setGlobalScores(globalData);
+      } else {
+        console.error("Failed to fetch global scores:", globalResponse.status);
       }
     } catch (error) {
       console.error("Error fetching scores:", error);
+      // Set empty arrays if there's an error
+      setPersonalScores([]);
+      setGlobalScores([]);
     } finally {
       setIsLoading(false);
     }
