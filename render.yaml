@@ -3,12 +3,16 @@ services:
   - type: web
     name: doublefeature-backend
     runtime: node
-    buildCommand: npm install
+    buildCommand: npm install && npx prisma generate
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: REACT_APP_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
         sync: false
     rootDir: backend
 

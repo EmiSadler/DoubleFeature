@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const tmdb = require("./routes/tmdb");
 const game = require("./routes/game");
+const auth = require("./routes/auth");
+const scores = require("./routes/scores");
 
 const app = express();
 
@@ -11,8 +13,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/tmdb", tmdb);
-
 app.use("/game", game);
+app.use("/api", auth);
+app.use("/api/scores", scores);
 
 // 404 Handler
 app.use((_req, res) => {
