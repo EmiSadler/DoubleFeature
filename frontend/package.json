@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "vite preview --host 0.0.0.0 --port $PORT",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:prod": "npm run build && npm start"
   },
   "dependencies": {
     "enhanced-resolve": "^5.18.2",

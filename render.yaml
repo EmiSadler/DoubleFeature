@@ -25,4 +25,6 @@ services:
     envVars:
       - key: VITE_BACKEND_URL
         value: https://doublefeature-backend.onrender.com
+      - key: NODE_ENV
+        value: production
     rootDir: frontend
