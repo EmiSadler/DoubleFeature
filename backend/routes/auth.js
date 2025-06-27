@@ -14,11 +14,8 @@ router.post("/register", async (req, res) => {
     // Check if user already exists
     const existingUser = await prisma.user.findFirst({
       where: {
-        OR: [
-          { username },
-          { email }
-        ]
-      }
+        OR: [{ username }, { email }],
+      },
     });
 
     if (existingUser) {
@@ -67,11 +64,8 @@ router.post("/login", async (req, res) => {
     // Find user by username or email
     const user = await prisma.user.findFirst({
       where: {
-        OR: [
-          { username: usernameOrEmail },
-          { email: usernameOrEmail }
-        ]
-      }
+        OR: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+      },
     });
 
     if (!user) {
