@@ -3,7 +3,7 @@ const API_URL =
 
 // Auth service for new user registration
 export const register = async (username, email, password) => {
-  const response = await fetch(`${API}/register`, {
+  const response = await fetch(`${API_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, email, password }),
@@ -19,7 +19,7 @@ export const register = async (username, email, password) => {
 
 // Auth service for user login
 export const login = async (usernameOrEmail, password) => {
-  const response = await fetch(`${API}/login`, {
+  const response = await fetch(`${API_URL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ usernameOrEmail, password }),
@@ -35,7 +35,7 @@ export const login = async (usernameOrEmail, password) => {
 
 // Auth service to get user profile
 export const getProfile = async (token) => {
-  const response = await fetch(`${API}/profile`, {
+  const response = await fetch(`${API_URL}/profile`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
