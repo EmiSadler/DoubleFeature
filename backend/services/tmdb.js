@@ -1,11 +1,17 @@
 const getRandomMovieLogic = async () => {
+  const apiKey = process.env.TMDB_API_KEY || process.env.REACT_APP_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("TMDB API key not found in environment variables");
+  }
+
   const url =
     "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=";
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
     },
   };
 
@@ -39,27 +45,59 @@ const getRandomMovieLogic = async () => {
 };
 
 const fetchMoviesByNameAndReleaseYear = async (movieName, movieReleaseYear) => {
-  const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1&year=${movieReleaseYear}`;
+  const apiKey = process.env.TMDB_API_KEY || process.env.REACT_APP_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("TMDB API key not found in environment variables");
+  }
+
+  const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+    movieName
+  )}&include_adult=false&language=en-US&page=1${
+    movieReleaseYear ? `&year=${movieReleaseYear}` : ""
+  }`;
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
     },
   };
 
   try {
+    console.log("Fetching movies with URL:", url);
     const response = await fetch(url, options);
+
+    if (!response.ok) {
+      console.error(
+        "TMDB API response not ok:",
+        response.status,
+        response.statusText
+      );
+      throw new Error(
+        `TMDB API error: ${response.status} ${response.statusText}`
+      );
+    }
+
     const data = await response.json();
+    console.log("TMDB API response:", {
+      total_results: data.total_results,
+      results_count: data.results?.length,
+    });
+
     const movies = data.results;
 
     if (!movies || movies.length === 0) {
+      console.log("No movies found for query:", movieName, movieReleaseYear);
       throw new Error("No movies found");
     }
 
     return movies; // Return the raw movie results
   } catch (err) {
     console.error("Error fetching movies by name:", err);
+    if (err.message.includes("TMDB API key")) {
+      throw err; // Re-throw API key errors as-is
+    }
     throw new Error("Failed to fetch movies by name");
   }
 };
@@ -70,12 +108,18 @@ const fetchMoviesByNameAndReleaseYear = async (movieName, movieReleaseYear) => {
  * @returns {Promise<Array>} - Array of cast members with name and id
  */
 const fetchCastFromMovieId = async (movieId) => {
+  const apiKey = process.env.TMDB_API_KEY || process.env.REACT_APP_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("TMDB API key not found in environment variables");
+  }
+
   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits`;
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
     },
   };
 

@@ -35,9 +35,11 @@ const getCastFromMovieId = async (req, res) => {
 
 const getSearchResults = async (req, res) => {
   const movieName = req.params.name;
+  console.log("Searching for movie:", movieName);
 
   try {
     const movies = await fetchMoviesByNameAndReleaseYear(movieName); // Use the new method
+    console.log("Found movies:", movies.length);
 
     const sanitisedMovieList = movies
       .slice(0, 5)
@@ -49,7 +51,7 @@ const getSearchResults = async (req, res) => {
 
     res.json(sanitisedMovieList);
   } catch (err) {
-    console.error(err);
+    console.error("Error in getSearchResults:", err);
     res
       .status(500)
       .json({ error: err.message || "Failed to fetch movie data" });
