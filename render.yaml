@@ -23,7 +23,7 @@ services:
     name: doublefeature-frontend
     runtime: node
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: chmod +x start.sh && ./start.sh
     envVars:
       - key: VITE_BACKEND_URL
         value: https://doublefeature-backend.onrender.com
