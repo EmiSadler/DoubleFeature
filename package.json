@@ -1,5 +1,5 @@
 {
-  "name": "cine2dorkle",
+  "name": "doublefeature",
   "version": "1.0.0",
   "private": true,
   "engines": {
@@ -34,12 +34,6 @@
     "jest": "^29.7.0",
     "jsdom": "^26.1.0",
     "vitest": "^3.1.1",
-    "concurrently": "^8.0.0",
-    "@rollup/rollup-linux-x64-gnu": "4.44.0"
-  },
-  "overrides": {
-    "vite": {
-      "rollup": "npm:@rollup/wasm-node"
-    }
+    "concurrently": "^8.0.0"
   }
 }
