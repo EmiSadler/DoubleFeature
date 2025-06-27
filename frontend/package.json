@@ -15,6 +15,7 @@
     "start:prod": "npm run build && npm start"
   },
   "dependencies": {
+    "@sentry/react": "^9.33.0",
     "enhanced-resolve": "^5.18.2",
     "express": "^4.21.2",
     "react": "^19.0.0",
