@@ -96,64 +96,75 @@ If you haven't already, make sure you have node and NVM installed.
 1. Fork this repository
 2. Rename the fork
 3. Clone the fork to their local machine
-4. Install dependencies for both the `frontend` and `api` applications:
+4. Install dependencies for both the `frontend` and `backend` applications:
    ```
+   npm install
    cd frontend
    npm install
-   cd ../api
+   cd ../backend
    npm install
    ```
 
 ### Setting up environment variables.
 
-We need to create two `.env` files, one in the frontend and one in the api.
+We need to create two `.env` files, one in the frontend and one in the backend.
 
 #### Frontend
 
 Create a file `frontend/.env` with the following contents:
 
 ```
-VITE_BACKEND_URL="http://localhost:3000"
+VITE_BACKEND_URL="http://localhost:3001"
 ```
 
 #### Backend
 
-Create a file `api/.env` with the following contents:
+Create a file `backend/.env` with the following contents:
 
 ```
-
+DATABASE_URL="postgresql://username:password@localhost:5432/doublefeature"
+TMDB_API_KEY="your_tmdb_api_key_here"
 ```
 
 For an explanation of these environment variables, see the documentation.
 
 ### How to run the servers and use the app
 
-1. Start the server application (in the `api` directory) in dev mode:
+1. Start both the frontend and backend applications from the root directory:
 
 ```
-; cd api
-; npm run dev
+npm run dev
 ```
 
-2. Start the front end application (in the `frontend` directory)
+This will start both the frontend (React app) and backend (API server) concurrently.
+
+Alternatively, you can start them separately:
+
+2a. Start the backend server (in the `backend` directory):
+
+```
+cd backend
+npm run dev
+```
+
+2b. Start the frontend application (in the `frontend` directory):
 
 In a new terminal session...
 
 ```
-; cd frontend
-; npm run dev
+cd frontend
+npm run dev
 ```
 
-3. Start the database (in the `api` directroy):
+3. Set up the database (in the `backend` directory):
 
 ```
-; createdb doublefeature
-; npx prisma migrate dev --name initial_setup
-; node index.js
+cd backend
+createdb doublefeature
+npx prisma migrate dev --name initial_setup
 ```
 
-You should now be able to open your browser and go to the
-`http://localhost:5173` to get to the homepage and start exploring the application.
+You should now be able to open your browser and go to the application URL shown in the terminal (typically `http://localhost:5173` or `http://localhost:5174`) to get to the homepage and start exploring the application.
 
 ## Authors and acknowledgment
 
