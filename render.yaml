@@ -15,20 +15,10 @@ services:
   # Frontend
   - type: web
     name: doublefeature-frontend
-    runtime: static
+    runtime: node
     buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
+    startCommand: npm start
     envVars:
       - key: VITE_BACKEND_URL
         value: https://doublefeature-backend.onrender.com
     rootDir: frontend
-    headers:
-      - path: "*.js"
-        name: "Content-Type"
-        value: "application/javascript"
-      - path: "*.mjs"
-        name: "Content-Type" 
-        value: "application/javascript"
-      - path: "*.css"
-        name: "Content-Type"
-        value: "text/css"

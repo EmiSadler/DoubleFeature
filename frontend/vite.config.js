@@ -10,15 +10,24 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: undefined,
+        entryFileNames: '[name].[hash].js',
+        chunkFileNames: '[name].[hash].js',
+        assetFileNames: '[name].[hash].[ext]'
       },
     },
   },
   server: {
     host: true,
     port: 5173,
+    headers: {
+      'Content-Type': 'application/javascript',
+    },
   },
   preview: {
     host: true,
     port: 5173,
+    headers: {
+      'Content-Type': 'application/javascript',
+    },
   },
 });
