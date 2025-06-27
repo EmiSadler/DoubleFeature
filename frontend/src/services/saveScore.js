@@ -1,5 +1,7 @@
-const API =
-  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:3001/api";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+console.log("API URL:", API); // Debug logging
 
 // saving game scores
 export const saveGameScore = async (token, score, gameMode, moviesUsed) => {
@@ -17,8 +19,16 @@ export const saveGameScore = async (token, score, gameMode, moviesUsed) => {
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error || "Failed to save score");
+    let errorMessage = "Failed to save score";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.error || errorMessage;
+    } catch (parseError) {
+      // If we can't parse JSON, it's likely an HTML error page
+      console.error("Received non-JSON response:", parseError);
+      errorMessage = `Server error: ${response.status} ${response.statusText}`;
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json();
@@ -31,7 +41,15 @@ export const getUserScores = async (token) => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch scores");
+    let errorMessage = "Failed to fetch scores";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.error || errorMessage;
+    } catch (parseError) {
+      console.error("Received non-JSON response:", parseError);
+      errorMessage = `Server error: ${response.status} ${response.statusText}`;
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json();
@@ -42,7 +60,15 @@ export const getLeaderboard = async () => {
   const response = await fetch(`${API}/scores/leaderboard`);
 
   if (!response.ok) {
-    throw new Error("Failed to fetch leaderboard");
+    let errorMessage = "Failed to fetch leaderboard";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.error || errorMessage;
+    } catch (parseError) {
+      console.error("Received non-JSON response:", parseError);
+      errorMessage = `Server error: ${response.status} ${response.statusText}`;
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json();

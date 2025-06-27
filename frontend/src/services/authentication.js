@@ -1,5 +1,7 @@
-const API_URL =
-  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:3001/api";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const API_URL = `${BACKEND_URL}/api`;
+
+console.log("API URL:", API_URL); // Debug logging
 
 // Auth service for new user registration
 export const register = async (username, email, password) => {
@@ -10,8 +12,15 @@ export const register = async (username, email, password) => {
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error || "Registration failed");
+    let errorMessage = "Registration failed";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.error || errorMessage;
+    } catch (parseError) {
+      console.error("Received non-JSON response:", parseError);
+      errorMessage = `Server error: ${response.status} ${response.statusText}`;
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json();
@@ -26,8 +35,15 @@ export const login = async (usernameOrEmail, password) => {
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error || "Login failed");
+    let errorMessage = "Login failed";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.error || errorMessage;
+    } catch (parseError) {
+      console.error("Received non-JSON response:", parseError);
+      errorMessage = `Server error: ${response.status} ${response.statusText}`;
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json(); // { token, user }
@@ -40,7 +56,15 @@ export const getProfile = async (token) => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch profile");
+    let errorMessage = "Failed to fetch profile";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.error || errorMessage;
+    } catch (parseError) {
+      console.error("Received non-JSON response:", parseError);
+      errorMessage = `Server error: ${response.status} ${response.statusText}`;
+    }
+    throw new Error(errorMessage);
   }
 
   return response.json();
