@@ -86,7 +86,7 @@ After the group project concluded, I continued development solo and added:
 
 ### Deployment
 
-- Render.com for both frontend and backend hosting
+- Render.com for both frontend, backend, and database hosting
 
 ## Features
 
