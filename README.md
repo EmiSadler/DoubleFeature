@@ -21,8 +21,9 @@ These two applications communicates through HTTP requests, passing JSON data
 between each other, and need to be run separately.
 
 ### Try It Yourself!
-[Link to Render](https://doublefeaturefrontendweb.onrender.com/) 
-Give it a minute to load - Free-Tier deployments shut down with inactivity.
+
+[Link to Render](https://doublefeaturefrontendweb.onrender.com/)
+Give it a minute to load - Free-Tier deployments shut down with inactivity
 If the Initial Movie hasn't loaded when you start, click the logo, return to the homepage, count to 10, then try again :)
 
 ### Features
@@ -42,24 +43,68 @@ If the Initial Movie hasn't loaded when you start, click the logo, return to the
 - End of game modal to show score and play again button
 - Can navigate back to home page using logo
 
-### Out of Scope Features
+## Project History
 
-**Accounts**
+**Group Project Phase:**
+The core game functionality was developed as a collaborative group project, including:
 
-- Users can create an account
-- Users can login
-- Users can track their scores on their accounts
+- Movie selection and guessing mechanics
+- TMDB API integration for movie data
+- Basic game interface and components
+- React + Vite setup with ESLint configuration
 
-**Multiplayer**
+**Solo Development Phase:**
+After the group project concluded, I continued development solo and added:
 
-- Use of Web Sockets to create a multiplayer game
+- User authentication system (login/signup)
+- High scores tracking and leaderboard
+- User profile management
+- Database integration with PostgreSQL and Prisma
+- Backend API with Express.js
+- Deployment configuration for Render
 
-**Styling and misc.**
+## Tech Stack
 
-- Optimising for use on a mobile device
-- Accessibility features for people with disabilities
-- Animated buttons
-- Refining the UX/UI
+### Frontend
+
+- React with Vite
+- JavaScript (ES6+)
+- CSS3 for styling
+- Fetch API for HTTP requests
+
+### Backend
+
+- Node.js with Express.js
+- PostgreSQL database
+- Prisma ORM
+- JWT authentication
+- bcrypt for password hashing
+
+### External APIs
+
+- The Movie Database (TMDB) API for movie data
+
+### Deployment
+
+- Render.com for both frontend and backend hosting
+
+## Features
+
+### Core Game (Group Project)
+
+- Random movie selection from TMDB
+- Cast-based movie guessing
+- Interactive game interface
+- Movie search functionality
+
+### Authentication & Scores (Solo Development)
+
+- User registration and login
+- Secure password hashing
+- JWT-based authentication
+- Personal high scores tracking
+- Global leaderboard
+- Score persistence across sessions
 
 ### Documentation
 
