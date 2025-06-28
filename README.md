@@ -22,7 +22,7 @@ between each other, and need to be run separately.
 
 ### Try It Yourself!
 [Link to Render](https://doublefeaturefrontendweb.onrender.com/) 
-Give it a minute to load - Free-Tier deployments shut down with inactivity
+Give it a minute to load - Free-Tier deployments shut down with inactivity.
 If the Initial Movie hasn't loaded when you start, click the logo, return to the homepage, count to 10, then try again :)
 
 ### Features
