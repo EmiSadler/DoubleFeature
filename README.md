@@ -20,9 +20,9 @@ This repo contains two applications:
 These two applications communicates through HTTP requests, passing JSON data  
 between each other, and need to be run separately.
 
-### Video demo
-
-PUT A SCREEN RECORDING OF A RUN THROUGH OF THE SITE HERE
+### Try It Yourself!
+[Link to Render](https://doublefeaturefrontendweb.onrender.com/) 
+Give it a minute to load - Free-Tier deployments shut down with inactivity
 
 ### Features
 
