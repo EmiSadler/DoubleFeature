@@ -224,9 +224,6 @@ This project was initially created by:
 [Emily Sadler](https://github.com/EmiSadler)
 [Louis Tse](https://github.com/Louistwt)
 
-Under the guidance of our coach at [Makers Academy](https://github.com/makersacademy):
-[John Forster](https://github.com/JohnForster)
-
 ```
 
 ```
