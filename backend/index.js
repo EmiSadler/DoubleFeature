@@ -14,11 +14,7 @@ const app = express();
 const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? [
-          "https://doublefeature.onrender.com",
-          "https://doublefeature-frontend.onrender.com",
-          /\.onrender\.com$/, // Allow any onrender.com subdomain
-        ]
+      ? ["https://doublefeature.emisadler.com"]
       : [
           "http://localhost:5173",
           "http://localhost:3000",
