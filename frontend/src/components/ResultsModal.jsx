@@ -8,12 +8,9 @@ const ResultsModal = ({ isOpen, playAgain, leaveGame, score }) => {
 
   // This effect controls the visibility of the modal
   useEffect(() => {
-    console.log("ResultsModal isOpen changed:", isOpen);
-
     if (isOpen) {
       // Short delay to sync with drumroll
       const timer = setTimeout(() => {
-        console.log("Setting modal to visible");
         setIsVisible(true);
       }, 300);
 

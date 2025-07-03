@@ -46,9 +46,6 @@ const startNewGame = async (req, res) => {
 // Helper function to get a specific game
 const getGameObject = (req, res) => {
   const gameId = req.params.id;
-  // console.log(`Looking for game with ID: ${gameId}`);
-  // console.log(`Available games: ${Array.from(activeGames.keys())}`);
-
   const game = activeGames.get(Number(gameId));
 
   if (!game) {
@@ -86,7 +83,6 @@ const processGuess = async (req, res) => {
       // Check if guessed movie has been played already
       const game = activeGames.get(1);
       if (game && game.movieIDsPlayed.includes(guessedMovieId)) {
-        console.log("Movie has already been played:", guessedMovie.title);
         return res.status(400).json({ error: "Movie has already been played" });
       }
 
@@ -136,10 +132,8 @@ const processGuess = async (req, res) => {
       }
     }
 
-    console.log("No matching cast members found");
     return res.status(400).json({ error: "No matching cast members found" });
   } catch (error) {
-    console.error("Error processing guess:", error.message, error.stack);
     res.status(500).json({ error: "Failed to process guess" });
   }
 };

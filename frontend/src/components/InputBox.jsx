@@ -30,13 +30,10 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
   const fetchSuggestions = async (input) => {
     try {
       const searchResult = await getSearchResults(input);
-      console.log("Search result:", searchResult);
       setSuggestions(searchResult);
-      console.log("Suggestions:", suggestions);
       setShowDropdown(true);
       setError("");
     } catch (err) {
-      console.error("Error fetching suggestions:", err);
       setError("Failed to fetch movie suggestions");
     }
   };
@@ -53,7 +50,11 @@ const InputBox = ({ onGuessMade, targetMovie, onSuccessfulGuess }) => {
     }
 
     const movieReleaseYear = movie.release_date.slice(0, 4); // Extract year from release date
-    const result = await guessMovie(movie.title, movieReleaseYear, targetMovie.id);
+    const result = await guessMovie(
+      movie.title,
+      movieReleaseYear,
+      targetMovie.id
+    );
     if (result.error) {
       setError(result.error);
       setQuery("");

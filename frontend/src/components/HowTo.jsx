@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import "../css/HowTo.css";
 
 const HowTo = () => {
-console.log("reached HowTo")
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    console.log("Opening modal");
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log("Closing modal");
     setIsModalOpen(false);
   };
 
@@ -33,7 +30,7 @@ Then it’s game over! But don’t worry, you can play again, and try to beat yo
 
 "You know what your problem is, it's that you haven't seen enough movies - all of life's riddles are answered in the movies."
 Steve Martin
-`
+`;
 
   return (
     <div>
@@ -49,7 +46,7 @@ Steve Martin
             {/* <p>In this single player game, race against the clock to name as many films as you can that each link to another...</p> */}
             {/* <p>{howToInfo}</p> */}
             <p className="howto-text">
-              {howToInfo.split('\n').map((line, index) => (
+              {howToInfo.split("\n").map((line, index) => (
                 <React.Fragment key={index}>
                   {line}
                   <br />

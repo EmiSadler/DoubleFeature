@@ -21,8 +21,6 @@ if (!fs.existsSync(distPath) || !fs.existsSync(indexPath)) {
   process.exit(1);
 }
 
-console.log("✅ Build files found, starting server...");
-
 // Serve static files from the dist directory
 app.use(
   express.static(distPath, {
@@ -55,6 +53,4 @@ app.get("*", (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Frontend server running on port ${port}`);
-});
+app.listen(port, () => {});

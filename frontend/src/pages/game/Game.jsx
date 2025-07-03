@@ -142,7 +142,6 @@ const GamePage = () => {
 
   // Function called when 'Play Again' button is clicked on ResultsModal
   const playAgain = () => {
-    console.log("play again button clicked");
     window.location.reload();
   };
   // Function called when 'Leave Game' button is clicked on ResultsModal
@@ -159,7 +158,6 @@ const GamePage = () => {
 
     // Set this flag to prevent multiple calls
     setSoundPlayed(true);
-    console.log("Timer finished, preparing to show results");
 
     // Pause background music regardless of whether we have a ref
     if (backgroundMusicRef.current) {
@@ -179,11 +177,8 @@ const GamePage = () => {
     // Explicitly set game over to false first
     setIsGameOver(false);
 
-    console.log("Starting timeout for results modal");
-
     // Short delay to let drumroll play before showing results
     setTimeout(() => {
-      console.log("Timeout completed, setting game over to true");
       // Save the score to the database
       const token = localStorage.getItem("token");
       if (token) {
@@ -195,7 +190,6 @@ const GamePage = () => {
 
           saveGameScore(token, score, gameMode, movieIds)
             .then((result) => {
-              console.log("Score saved successfully:", result);
               setScoreSaved(true);
             })
             .catch((error) => {
@@ -212,8 +206,6 @@ const GamePage = () => {
       }
       // Set game over state directly, without requestAnimationFrame
       setIsGameOver(true);
-
-      console.log("Game over set to true, results should show");
 
       // Restart background music immediately when results modal appears
       if (isSoundEnabled() && backgroundMusicRef.current) {

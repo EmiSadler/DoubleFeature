@@ -31,8 +31,6 @@ app.use(express.json());
 
 // Debug middleware
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
-  console.log("Origin:", req.headers.origin);
   next();
 });
 
@@ -94,6 +92,4 @@ app.use((err, req, res, next) => {
 
 // Server setup
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, () => {});

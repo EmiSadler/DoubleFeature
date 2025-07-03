@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect, useRef } from "react";
 import Footer from "../../components/Footer";
 import "./HomePage.css";

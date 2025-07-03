@@ -1,8 +1,6 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-console.log("API URL:", API); // Debug logging
-
 // saving game scores
 export const saveGameScore = async (token, score, gameMode, moviesUsed) => {
   const response = await fetch(`${API}/scores`, {

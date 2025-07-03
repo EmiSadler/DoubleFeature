@@ -6,7 +6,6 @@ async function testConnection() {
   try {
     // Try to query the database
     const usersCount = await prisma.user.count();
-    console.log("Connection successful! Users count:", usersCount);
   } catch (error) {
     console.error("Database connection failed:", error);
   } finally {

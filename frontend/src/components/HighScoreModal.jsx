@@ -12,8 +12,6 @@ const HighScoreModal = () => {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const API = `${BACKEND_URL}/api`;
 
-  console.log("HighScoreModal API URL:", API); // Debug logging
-
   // Fetch scores when the modal opens
   useEffect(() => {
     if (isModalOpen) {
