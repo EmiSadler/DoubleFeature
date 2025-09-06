@@ -31,3 +31,9 @@ dist-ssr
 /api/coverage
 /frontend/coverage
 .vercel
+
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+docker-compose.override.yml
+docker-compose.*.yml
