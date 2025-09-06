@@ -8,6 +8,8 @@
   background-color: rgba(192, 170, 108, 0.2);
   border: 2px solid #c0aa6c;
   font-family: "Federo", sans-serif;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .username-highlight {
@@ -16,6 +18,10 @@
   font-weight: bold;
   font-size: 1.2em;
   text-shadow: 1px 1px #000;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  display: inline-block;
+  max-width: 100%;
 }
 
 .user-welcome h2 {
